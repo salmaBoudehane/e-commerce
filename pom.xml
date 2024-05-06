@@ -3,7 +3,7 @@
   <groupId>ecommece1</groupId>
   <artifactId>ecommece1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <dependencies>
   	<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 	<dependency>
@@ -17,13 +17,7 @@
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
 	</dependency>
-	<dependency>
-	    <groupId>javax.servlet</groupId>
-	    <artifactId>javax.servlet-api</artifactId>
-	    <version>4.0.1</version>
-	    <scope>provided</scope>
-	</dependency>
-
+	
   </dependencies>
   <build>
     <plugins>
@@ -37,18 +31,6 @@
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.2.3</version>
-      </plugin>
-      <plugin>
-      	<groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-        	<archive>
-        		<manifest>
-        			<mainClass>exemple.Main</mainClass>
-        		</manifest>
-        	</archive>
-        </configuration>
       </plugin>
     </plugins>
   </build>
