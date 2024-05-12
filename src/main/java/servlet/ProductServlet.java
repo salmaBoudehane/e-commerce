@@ -1,36 +1,29 @@
-package servlet;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
+private void editProduct(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        int productId = Integer.parseInt(request.getParameter("productId"));
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+        // Créez une instance de ProductDAO
+        ProductDAO productDAO = new ProductDAO();
 
-import dao.ProductDAO;
-import pojo.Product;
+        // Obtenez le produit à modifier en fonction de son ID
+        Product product = productDAO.getProductById(productId);
 
-@WebServlet("/ProductServlet")
-public class ProductServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
-    public ProductServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+        // Si le produit existe, envoyez-le à la page de modification
+        if (product != null) {
+            // Définissez l'attribut "product" dans l'objet request
+            request.setAttribute("product", product);
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductDAO productDAO = new ProductDAO();
-        try {
-            List<Product> products = productDAO.getAllProducts();
-            request.setAttribute("products", products);
-            request.getRequestDispatcher("/products.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            // Redirigez vers la page JSP editProduct.jsp
+            request.getRequestDispatcher("/editProduct.jsp").forward(request, response);
+        } else {
+            // Si le produit n'existe pas, envoyez une erreur 404
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Le produit avec l'ID spécifié n'existe pas.");
         }
-	}
-
+    } catch (NumberFormatException e) {
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID de produit invalide");
+    } catch (SQLException e) {
+        e.printStackTrace();
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    }
 }

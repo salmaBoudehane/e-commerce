@@ -6,19 +6,29 @@ public class Product {
     private String imageUrl;
     private double price;
     private String description;
+    private String marque;
 
     // Constructors, getters, and setters
     public Product() {}
 
-    public Product(int id, String name, String imageUrl, double price, String description) {
+    public Product(int id, String name, String imageUrl, double price, String description, String marque) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
         this.price = price;
         this.description = description;
+        this.marque = marque;
     }
 
-    // Getters and setters
+    public String getMarque() {
+		return marque;
+	}
+
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+
+	// Getters and setters
     public int getId() {
         return id;
     }
