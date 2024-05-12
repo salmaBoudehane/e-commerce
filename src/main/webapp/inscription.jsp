@@ -3,66 +3,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Login</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Inscription</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/style.css">
-  	<link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-  	<link rel="stylesheet" href="./assets/css/style.css">
-
-  <!-- 
-    - google font link
-  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- 
-    - preload images
-  -->
   <link rel="preload" as="image" href="./assets/images/logo.png">
   <link rel="preload" as="image" href="./assets/images/hero-banner-1.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-banner-2.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-banner-3.jpg">
 </head>
-<body class="img js-fullheight" style="background-image: url(images/bglog.webp)" id="top">
+<body>
+<body class="img js-fullheight" style="background-image: url(images/bglog.webp);"
+	id="top">
+
+  <!-- 
+    - #HEADER
+  -->
 
   <header class="header">
+
     <div class="alert">
-        <div class="container">
-            <p class="alert-text">E-commerce site for cosmetic products</p>
-        </div>
+      <div class="container">
+        <p class="alert-text">E-commerce site for cosmetic products</p>
+      </div>
     </div>
 
     <div class="header-top" data-header>
-        <div class="container d-flex justify-content-center align-items-center">
-            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
-            </button>
+      <div class="container">
 
-         <!--   <a href="#" class="logo">
-                <img src="./assets/images/logo.png" width="179" height="40" alt="Glowing" >
-            </a>
-		 -->
-            <nav class="navbar">
-                <ul class="navbar-list">
-                    <li><a href="index.html" class="navbar-link has-after">Home</a></li>
-                    <li><a href="listerpr.html" class="navbar-link has-after">Products</a></li>
-                    <li><a href="#shop" class="navbar-link has-after">Shop</a></li>
-                    <li><a href="#offer" class="navbar-link has-after">Offer</a></li>
-                    <li><a href="#blog" class="navbar-link has-after">Blog</a></li>
-                    <li><a href="#footer" class="navbar-link has-after">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <span class="line line-1"></span>
+          <span class="line line-2"></span>
+          <span class="line line-3"></span>
+        </button>
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+
+            <li>
+              <a href="index.html" class="navbar-link has-after">Home</a>
+            </li>
+
+            <li>
+              <a href="listerpr.html" class="navbar-link has-after">products</a>
+            </li>
+
+            <li>
+              <a href="#shop" class="navbar-link has-after">Shop</a>
+            </li>
+
+            <li>
+              <a href="#offer" class="navbar-link has-after">Offer</a>
+            </li>
+
+            <li>
+              <a href="#blog" class="navbar-link has-after">Blog</a>
+            </li>
+
+            <li>
+              <a href="#footer" class="navbar-link has-after">Contact</a>
+            </li>
+
+          </ul>
+        </nav>
+
+      </div>
     </div>
-</header>
 
+  </header>
+
+
+
+
+
+  <!-- 
+    - #MOBILE NAVBAR
+  -->
 
   <div class="sidebar">
     <div class="mobile-navbar" data-navbar>
@@ -84,7 +108,7 @@
         </li>
 
         <li>
-          <a href="listerpr.html" class="navbar-link" data-nav-link>products</a>
+          <a href="listerpr.html" class="navbar-link" data-nav-link>Products</a>
         </li>
 
         <li>
@@ -114,38 +138,51 @@
     <section class="ftco-section">
 		<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section" style="color : black; font-weight: bold;">Login</h2>
+					<h2 class="heading-section" style="color : black; font-weight: bold;">Inscription</h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
-		      	<form action="LoginServlet" method="post">
+		      	<form action="InscriptionServlet" method="post" class="signin-form">
+				<div >
 		      		<div class="form-group">
-		      			<input type="text" name="username" class="form-control" placeholder="Username"style="color : black;border: 2px solid black;border-radius: 25px;font-size: 16px;" required>
+		      			<input type="text" name="fullname" class="form-control" placeholder="Full Name" style="color : black;border: 2px solid black;border-radius: 25px;font-size: 16px;" required>
 		      		</div>
-		            <div class="form-group">
-		              <input id="password-field" name="password" type="password" class="form-control" placeholder="Password"style="color : black;border: 2px solid black;border-radius: 25px; font-size: 16px;" required>
-		              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-		            </div>
-		            <div class="form-group">
-		            	<button type="submit" class="form-control bt bt-primary submit px-3">Sign In</button>
-		            </div>
-		            <% String errorMessage = request.getParameter("error");
+		      		<div class="form-group">
+		      			<input type="text" name="username" class="form-control" placeholder="Username" style="color : black;border: 2px solid black;border-radius: 25px;font-size: 16px;" required>
+		      		</div>
+		      		</div>
+		      	<div>
+	            <div class="form-group">
+	              <input id="password-field" name="password" type="password" class="form-control" placeholder="Password" style="color : black;border: 2px solid black;border-radius: 25px; font-size: 16px;" required>
+	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	            </div>
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="form-control bt bt-primary submit px-3">S'inscrire</button>
+	            </div>
+	            <% String errorMessage = request.getParameter("error");
        					if (errorMessage != null) { %>
         				<script>alert("<%= errorMessage %>");</script>
-    				<% } %>
+    			<% } %>
 	            <div class="form-group d-md-flex justify-content-end">
-		            <div class="w-50 text-md-right">
-		                <a href="inscription.jsp" style="color: white">Create an account</a>
-		            </div>
-        		</div>
+					<div class="w-50 text-md-right">
+						<a href="login.jsp" style="color: #fff">I have an account</a>
+					</div>				
+	            </div>
 	          </form>
+	         
 		      </div>
-			</div>
+				</div>
 			</div>
 	</section>
   </main>
+
+
+
+
+
   <!-- 
     - #FOOTER
   -->
@@ -321,9 +358,10 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
+</body>
 </body>
 </html>

@@ -33,12 +33,10 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 // Store the username in the session
                 session.setAttribute("username", username);
-                
-                // Redirect to success page or perform other actions
-                response.sendRedirect("success.jsp");
-            } else {
+                response.sendRedirect("index.jsp");
+                } else {
             	errorMessage = "Invalid username or password";
-                response.sendRedirect("login.jsp?error=" + errorMessage);
+            	response.sendRedirect("login.jsp?error=" + errorMessage);
             }
         } catch (SQLException e) {
             e.printStackTrace(); // Handle database errors
