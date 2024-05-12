@@ -11,30 +11,12 @@ import java.util.List;
 import pojo.Product;
 
 public class ProductDAO {
-	private static final String URL = "jdbc:mysql://localhost:3306/ecommerce";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
-
-    public Connection getConnection() throws SQLException {
-        Connection connection = null;
-        try {
-            // Load the MySQL JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Establish the database connection
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace(); // Handle ClassNotFoundException appropriately
-        }
-        return connection;
-    }
-
     // Method to retrieve all products from the database
     public List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM Products";
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
