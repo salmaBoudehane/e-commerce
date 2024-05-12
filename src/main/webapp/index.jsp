@@ -73,7 +73,7 @@
 
         <div class="header-actions">
 
-          <a href="login.html" class="header-action-btn" aria-label="user">
+          <a href="login.jsp" class="header-action-btn" aria-label="user">
             <ion-icon name="person-outline" aria-hidden="true" aria-hidden="true"></ion-icon>
           </a >
 
