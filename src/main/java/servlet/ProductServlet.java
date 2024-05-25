@@ -52,6 +52,9 @@ public class ProductServlet extends HttpServlet {
                 case "edit":
                     editProduct(request, response);
                     break;
+                case "update":
+                    updateProduct(request, response);
+                    break; // Ajoutez un cas pour gérer la mise à jour du produit
                 default:
                     response.sendRedirect(request.getContextPath() + "/ProductServlet");
                     break;
@@ -144,7 +147,6 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    
     private void editProduct(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -172,6 +174,28 @@ public class ProductServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("productId"));
+            String name = request.getParameter("name");
+            String imageUrl = request.getParameter("imageUrl");
+            double price = Double.parseDouble(request.getParameter("price"));
+            String description = request.getParameter("description");
+            String marque = request.getParameter("marque");
+
+            ProductDAO productDAO = new ProductDAO();
+            Product updatedProduct = new Product(id, name, imageUrl, price, description, marque);
+
+            productDAO.updateProduct(updatedProduct);
+            response.sendRedirect(request.getContextPath() + "/ProductServlet");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID ou prix invalide");
         }
     }
 }

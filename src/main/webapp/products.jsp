@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -207,10 +207,13 @@
                                 </h3>
                                 <!-- Boutons Modifier et Supprimer -->
                                 <div class="product-actions">
-                                     <a href="editProduct.jsp?productId=${product.id}" class="action-btn" aria-label="Modifier" title="Modifier">
-                                      <i class="fa fa-edit" style="font-size:18px"></i>
-                                    </a>
-                                    <button type="button" class="action-btn delete-product-btn" aria-label="Supprimer" title="Supprimer" data-product-id="${product.id}">
+                                      <form action="editProduct.jsp" method="post">
+                                      <input type="hidden" name="productId" value="${product.id}">
+                                       <button type="submit" name="action" value="edit" class="action-btn" aria-label="Modifier" title="Modifier">
+                                            <i class="fa fa-edit" style="font-size:18px"></i>
+                                       </button>
+                                      </form>
+                                     <button type="button" class="action-btn delete-product-btn" aria-label="Supprimer" title="Supprimer" data-product-id="${product.id}">
                                      <i class="fa fa-trash-alt" style="font-size:18px"></i>
                                     </button>
                                 </div>
@@ -237,10 +240,13 @@
                                     <a href="#" class="card-title">${product.name}</a>
                                 </h3>
                                 <!-- Boutons Modifier et Supprimer -->
-                                <div class="product-actions">
-                                    <a href="editProduct.jsp?productId=${product.id}" class="action-btn" aria-label="Modifier" title="Modifier">
-                                      <i class="fa fa-edit" style="font-size:18px"></i>
-                                    </a>
+                                <div class="product-actions" >
+                                     <form action="ProductServlet" method="post">
+                                      <input type="hidden" name="productId" value="${product.id}">
+                                       <button type="submit" name="action" value="edit" class="action-btn" aria-label="Modifier" title="Modifier">
+                                            <i class="fa fa-edit" style="font-size:18px"></i>
+                                       </button>
+                                      </form>
                                     <button type="button" class="action-btn delete-product-btn" aria-label="Supprimer" title="Supprimer" data-product-id="${product.id}">
                                       <i class="fa fa-trash-alt" style="font-size:18px"></i>
                                       </button>
@@ -263,7 +269,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+                <p>ÃŠtes-vous sÃ»r de vouloir supprimer ce produit ?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="cancelDeleteBtn" data-dismiss="modal">Annuler</button>
@@ -280,7 +286,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
 function deleteProduct(productId) {
-    // Vous pouvez utiliser une requête AJAX pour supprimer le produit sans recharger la page
+    // Vous pouvez utiliser une requÃªte AJAX pour supprimer le produit sans recharger la page
     $.ajax({
         type: 'POST',
         url: 'ProductServlet',
@@ -289,12 +295,12 @@ function deleteProduct(productId) {
             productId: productId
         },
         success: function(response) {
-            console.log('Réponse du serveur après la suppression :', response);
-            // Vous pouvez mettre à jour l'interface utilisateur ici si nécessaire
+            console.log('RÃ©ponse du serveur aprÃ¨s la suppression :', response);
+            // Vous pouvez mettre Ã  jour l'interface utilisateur ici si nÃ©cessaire
             // Par exemple, supprimer visuellement le produit de la liste
-            // Cela empêchera également la boîte de dialogue de se fermer immédiatement
-            // Vous pouvez également recharger la page ici si nécessaire
-            // Ici, nous rechargeons simplement la page pour refléter les changements
+            // Cela empÃªchera Ã©galement la boÃ®te de dialogue de se fermer immÃ©diatement
+            // Vous pouvez Ã©galement recharger la page ici si nÃ©cessaire
+            // Ici, nous rechargeons simplement la page pour reflÃ©ter les changements
             window.location.reload();
         },
         error: function(xhr, status, error) {
@@ -304,11 +310,11 @@ function deleteProduct(productId) {
     });
 }
 
-// Ajouter un gestionnaire d'événements pour le clic sur le bouton de suppression
+// Ajouter un gestionnaire d'Ã©vÃ©nements pour le clic sur le bouton de suppression
 var deleteButtons = document.querySelectorAll(".delete-product-btn");
 deleteButtons.forEach(function(button) {
     button.addEventListener("click", function() {
-        // Récupérer l'ID du produit à supprimer
+        // RÃ©cupÃ©rer l'ID du produit Ã  supprimer
         var productId = button.getAttribute("data-product-id");
         // Appeler la fonction de suppression directement
         deleteProduct(productId);

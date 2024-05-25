@@ -14,7 +14,7 @@ public class ProductDAO {
     private static final String URL = "jdbc:mysql://localhost:3306/ecommerce";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
-    private Connection connection;
+
 
     public Connection getConnection() throws SQLException {
         Connection connection = null;
@@ -128,15 +128,19 @@ public class ProductDAO {
         }
     }
     public Product getProductById(int productId) throws SQLException {
-        String query = "SELECT * FROM products WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        String sql = "SELECT * FROM products WHERE id = ?";
+        try (Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, productId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     Product product = new Product();
                     product.setId(resultSet.getInt("id"));
                     product.setName(resultSet.getString("name"));
+                    product.setImageUrl(resultSet.getString("image_url"));
+                    product.setPrice(resultSet.getDouble("price"));
                     product.setDescription(resultSet.getString("description"));
+                    product.setMarque(resultSet.getString("marque"));
                     // Ajoutez d'autres propriétés selon votre modèle de données
                     return product;
                 }
